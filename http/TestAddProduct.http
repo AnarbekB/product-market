@@ -1,0 +1,13 @@
+POST http://localhost:8020/test/product/add
+Content-Type: application/json
+
+{
+    "externalId" : "{{$uuid}}",
+    "name" : "Test Loan Product",
+    "type" : "loan",
+    "agreementId" : "{{$uuid}}",
+    "userId" : {{$randomInt}}
+}
+
+
+###

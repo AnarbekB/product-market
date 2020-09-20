@@ -5,6 +5,7 @@ import ru.balmukanov.productmarket.dto.ProductDTO;
 import ru.balmukanov.productmarket.entity.Product;
 import ru.balmukanov.productmarket.service.ProductService;
 
+//todo delete after impl inner sync products
 @RestController
 @RequestMapping("test")
 public class TestController {
@@ -16,14 +17,12 @@ public class TestController {
     }
 
     @GetMapping("/product/get/by/id/{id}")
-    public String test(@PathVariable Long id) {
-        Product product = this.productService.get(id);
-        return product.getName();
+    public Product test(@PathVariable Long id) {
+        return this.productService.get(id);
     }
 
     @PostMapping("/product/add")
-    public String main(@RequestBody ProductDTO productDTO) {
-        this.productService.add(productDTO);
-        return "ok";
+    public Product add(@RequestBody ProductDTO productDTO) {
+        return this.productService.add(productDTO);
     }
 }

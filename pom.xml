@@ -29,7 +29,19 @@
 		<db.schema>products</db.schema>
 		<db.common.lib.version>0.0.1-SNAPSHOT</db.common.lib.version>
 		<flyway.version>6.5.6</flyway.version>
+		<product-market-interface.version>1.0.2</product-market-interface.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>product-market-interface-mvn-repo</id>
+			<url>https://raw.github.com/AnarbekB/product-market-interface/mvn-repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -81,6 +93,12 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 			<version>${flyway.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ru.balmukanov</groupId>
+			<artifactId>product-market-interface</artifactId>
+			<version>${product-market-interface.version}</version>
 		</dependency>
 
 		<dependency>

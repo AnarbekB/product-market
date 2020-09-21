@@ -1,9 +1,10 @@
 package ru.balmukanov.productmarket.service;
 
 import org.springframework.stereotype.Service;
-import ru.balmukanov.productmarket.dto.ProductDTO;
 import ru.balmukanov.productmarket.entity.Product;
 import ru.balmukanov.productmarket.repository.ProductRepository;
+import ru.balmukanov.productmarketinterface.thrift.ProductDto;
+import ru.balmukanov.productmarketinterface.thrift.ProductNotFoundException;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -15,12 +16,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product get(Long id) {
-        return this.productRepository.findById(id).orElseThrow();
+    public Product get(Long id) throws ProductNotFoundException {
+        return this.productRepository.findById(id)
+                .orElseThrow(ProductNotFoundException::new);
     }
 
     @Override
-    public Product add(ProductDTO productDTO) {
+    public Product add(ProductDto productDTO) {
         Product product = new Product();
         product.setName(productDTO.name);
         product.setAgreementId(productDTO.agreementId);

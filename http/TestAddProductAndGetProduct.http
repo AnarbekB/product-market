@@ -4,7 +4,7 @@ Content-Type: application/json
 {
     "externalId" : "{{$uuid}}",
     "name" : "Test Loan Product",
-    "type" : "loan",
+    "type" : 3,
     "agreementId" : "{{$uuid}}",
     "userId" : {{$randomInt}}
 }

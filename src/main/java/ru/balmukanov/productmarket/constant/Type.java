@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 
 import java.io.Serializable;
 
+//todo delete
 @AllArgsConstructor
 public enum Type implements Serializable {
 

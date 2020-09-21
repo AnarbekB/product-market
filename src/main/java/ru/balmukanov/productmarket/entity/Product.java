@@ -1,7 +1,7 @@
 package ru.balmukanov.productmarket.entity;
 
 import lombok.*;
-import ru.balmukanov.productmarket.constant.Type;
+import ru.balmukanov.productmarketinterface.thrift.ProductType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +23,7 @@ public class Product implements Serializable {
 
     private String name;
 
-    private Type type;
+    private ProductType type;
 
     private String agreementId;
 

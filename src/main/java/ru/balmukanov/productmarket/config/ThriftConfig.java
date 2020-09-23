@@ -5,6 +5,7 @@ import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
 import org.apache.thrift.transport.TTransportException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.balmukanov.productmarket.transport.http.ThriftService;
@@ -19,7 +20,10 @@ public class ThriftConfig {
 
     ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    private ThriftService thriftService;
+    private final ThriftService thriftService;
+
+    @Value("${product.market.thrift.port}")
+    private int productMarketThriftPort;
 
     public ThriftConfig(ThriftService thriftService) {
         this.thriftService = thriftService;
@@ -28,7 +32,7 @@ public class ThriftConfig {
     @Bean
     public TServerTransport tServerTransport() {
         try {
-            return new TServerSocket(7911);//todo change to config
+            return new TServerSocket(this.productMarketThriftPort);
         } catch (TTransportException e) {
             e.printStackTrace();
         }

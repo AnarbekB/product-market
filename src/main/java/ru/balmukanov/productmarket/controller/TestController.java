@@ -1,6 +1,8 @@
 package ru.balmukanov.productmarket.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import ru.balmukanov.productmarket.entity.Product;
 import ru.balmukanov.productmarket.service.ProductService;
 import ru.balmukanov.productmarketinterface.thrift.ProductDto;
@@ -18,8 +20,12 @@ public class TestController {
     }
 
     @GetMapping("/product/get/by/id/{id}")
-    public Product test(@PathVariable Long id) throws ProductNotFoundException {
-        return this.productService.get(id);
+    public Product test(@PathVariable Long id) throws ResponseStatusException {
+        try {
+            return this.productService.get(id);
+        } catch (ProductNotFoundException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
     }
 
     @PostMapping("/product/add")

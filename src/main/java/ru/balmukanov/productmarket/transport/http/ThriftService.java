@@ -3,42 +3,43 @@ package ru.balmukanov.productmarket.transport.http;
 import org.apache.thrift.TException;
 import org.springframework.stereotype.Service;
 import ru.balmukanov.productmarket.entity.Product;
+import ru.balmukanov.productmarket.mapper.ProductMapper;
 import ru.balmukanov.productmarket.service.ProductService;
-import ru.balmukanov.productmarketinterface.thrift.InvalidOperationException;
 import ru.balmukanov.productmarketinterface.thrift.ProductDto;
 import ru.balmukanov.productmarketinterface.thrift.ProductMarketThriftService;
-import ru.balmukanov.productmarketinterface.thrift.ProductNotFoundException;
+
+import java.util.List;
 
 @Service
 public class ThriftService implements ProductMarketThriftService.Iface {
 
     private final ProductService productService;
 
-    public ThriftService(ProductService productService) {
+    private final ProductMapper productMapper;
+
+    public ThriftService(ProductService productService, ProductMapper productMapper) {
         this.productService = productService;
+        this.productMapper = productMapper;
     }
 
     @Override
-    public ProductDto get(long l) throws InvalidOperationException, ProductNotFoundException, TException {
+    public ProductDto get(long l) throws TException {
         Product product = this.productService.get(l);
 
-        return new ProductDto(
-                product.getId(),
-                product.getExternalId(),
-                product.getName(),
-                product.getType(),
-                product.getAgreementId(),
-                product.getUserId()
-        );
+        return this.productMapper.toDto(product);
     }
 
     @Override
-    public void save(ProductDto productDto) throws InvalidOperationException, TException {
-        this.productService.add(productDto);
+    public List<ProductDto> userList(long l) {
+        List<Product> products = this.productService.userList(l);
+
+        return this.productMapper.toDtoList(products);
     }
 
     @Override
-    public boolean ping() throws InvalidOperationException, TException {
-        return true;
+    public ProductDto save(ProductDto productDto) {
+        Product product = this.productService.add(productDto);
+
+        return this.productMapper.toDto(product);
     }
 }

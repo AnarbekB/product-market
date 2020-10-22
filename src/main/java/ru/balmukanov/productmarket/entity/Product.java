@@ -2,6 +2,7 @@ package ru.balmukanov.productmarket.entity;
 
 import lombok.*;
 import ru.balmukanov.productmarketinterface.thrift.ProductType;
+import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,14 +20,23 @@ public class Product implements Serializable {
     @Setter(AccessLevel.PROTECTED)
     private Long id;
 
+    @NotNull
+    @Column(nullable = false)
     private String externalId;
 
+    @NotNull
+    @Column(nullable = false)
     private String name;
 
+    @NotNull
+    @Column(nullable = false)
     private ProductType type;
 
+    @NotNull
+    @Column(nullable = false)
     private String agreementId;
 
-    private int userId;
-
+    @NotNull
+    @Column(nullable = false)
+    private Long userId;
 }

@@ -6,6 +6,8 @@ import ru.balmukanov.productmarket.repository.ProductRepository;
 import ru.balmukanov.productmarketinterface.thrift.ProductDto;
 import ru.balmukanov.productmarketinterface.thrift.ProductNotFoundException;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -33,5 +35,10 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository.saveAndFlush(product);
 
         return product;
+    }
+
+    @Override
+    public List<Product> userList(Long userId) {
+        return this.productRepository.findProductsByUserId(userId);
     }
 }

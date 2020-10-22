@@ -7,10 +7,9 @@ import ru.balmukanov.productmarketinterface.thrift.ProductDto;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class ProductMapperImpl implements ProductMapper {
+@Component()
+public class ProductMapperThrift {
 
-    @Override
     public ProductDto toDto(Product product) {
         return new ProductDto(
                 product.getId(),
@@ -22,7 +21,6 @@ public class ProductMapperImpl implements ProductMapper {
         );
     }
 
-    @Override
     public List<ProductDto> toDtoList(List<Product> products) {
         List<ProductDto> productDtoList = new ArrayList<>();
         products.forEach(product -> productDtoList.add(this.toDto(product)));

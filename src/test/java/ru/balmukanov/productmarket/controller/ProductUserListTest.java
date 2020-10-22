@@ -8,11 +8,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.balmukanov.productmarket.controller.UserProductController;
+import ru.balmukanov.productmarket.dto.ProductDto;
 import ru.balmukanov.productmarket.entity.Product;
-import ru.balmukanov.productmarket.mapper.ProductMapper;
+import ru.balmukanov.productmarket.mapper.ProductMapperUser;
+import ru.balmukanov.productmarket.mapper.RequisiteMapper;
 import ru.balmukanov.productmarket.service.ProductService;
-import ru.balmukanov.productmarketinterface.thrift.ProductDto;
+import ru.balmukanov.productmarket.service.RequisiteService;
 import ru.balmukanov.productmarketinterface.thrift.ProductType;
 
 import java.util.Collections;
@@ -30,13 +31,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ProductUserListTest {
 
     @MockBean
-    private ProductMapper productMapper;
+    private ProductMapperUser productMapper;
 
     @Autowired
     private MockMvc mvc;
 
     @MockBean
     private ProductService productService;
+
+    @MockBean
+    private RequisiteService requisiteService;
+
+    @MockBean
+    private RequisiteMapper requisiteMapper;
 
     @Test
     public void getProductList() throws Exception {

@@ -1,10 +1,9 @@
 package ru.balmukanov.productmarket.entity;
 
 import lombok.*;
-import ru.balmukanov.productmarketinterface.thrift.ProductType;
-import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Builder
@@ -12,8 +11,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public class Product implements Serializable {
+@Table(name = "requisites")
+public class Requisite implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,32 +21,36 @@ public class Product implements Serializable {
 
     @NotNull
     @Column(nullable = false)
-    private String externalId;
+    private String BIC;
 
     @NotNull
     @Column(nullable = false)
-    private String name;
+    //Банк получатель
+    private String bankName;
 
     @NotNull
     @Column(nullable = false)
-    private ProductType type;
+    private String INN;
 
     @NotNull
     @Column(nullable = false)
-    private String agreementId;
+    private String KPP;
 
     @NotNull
     @Column(nullable = false)
-    private Long userId;
+    //Счет получателя
+    private String recipientAccount;
 
     @NotNull
     @Column(nullable = false)
-    private String currency;
+    private String recipient;
 
     @NotNull
     @Column(nullable = false)
-    private float amount;
+    //Корреспондентский счет
+    private String correspondentAccount;
 
-    @OneToOne(mappedBy = "product")
-    private Requisite requisite;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 }

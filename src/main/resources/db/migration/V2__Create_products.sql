@@ -6,5 +6,7 @@ create table products.products
     name         varchar(255) not null,
     type         int4         not null,
     user_id      bigint       not null,
+    currency     varchar(5)   not null,
+    amount       real         not null,
     primary key (id)
 )

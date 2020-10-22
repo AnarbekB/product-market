@@ -3,7 +3,7 @@ package ru.balmukanov.productmarket.transport.http;
 import org.apache.thrift.TException;
 import org.springframework.stereotype.Service;
 import ru.balmukanov.productmarket.entity.Product;
-import ru.balmukanov.productmarket.mapper.ProductMapper;
+import ru.balmukanov.productmarket.mapper.ProductMapperThrift;
 import ru.balmukanov.productmarket.service.ProductService;
 import ru.balmukanov.productmarketinterface.thrift.ProductDto;
 import ru.balmukanov.productmarketinterface.thrift.ProductMarketThriftService;
@@ -15,9 +15,9 @@ public class ThriftService implements ProductMarketThriftService.Iface {
 
     private final ProductService productService;
 
-    private final ProductMapper productMapper;
+    private final ProductMapperThrift productMapper;
 
-    public ThriftService(ProductService productService, ProductMapper productMapper) {
+    public ThriftService(ProductService productService, ProductMapperThrift productMapper) {
         this.productService = productService;
         this.productMapper = productMapper;
     }

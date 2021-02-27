@@ -1,0 +1,4 @@
+GET http://localhost:8020/product/user/1/list
+Acept: application/json
+
+###

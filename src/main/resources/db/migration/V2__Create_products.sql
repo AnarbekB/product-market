@@ -4,7 +4,7 @@ create table products.products
     agreement_id varchar(255)     not null,
     external_id  varchar(255)     not null,
     name         varchar(255)     not null,
-    type         int4             not null,
+    type         varchar(100)     not null,
     user_id      bigint           not null,
     currency     varchar(5)       not null,
     amount       double precision not null,

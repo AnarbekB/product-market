@@ -1,15 +1,10 @@
 package ru.balmukanov.productmarket.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import ru.balmukanov.productmarket.constant.ProductType;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class ProductDto {
-    public long id;
+public class AddProductDto {
     public String externalId;
     public String name;
     public ProductType type;
@@ -18,6 +13,4 @@ public class ProductDto {
     public double amount;
     public String currency;
     public boolean active;
-    public boolean hide;
-    public String image;
 }

@@ -10,14 +10,19 @@ import java.util.List;
 @Component
 public class ProductMapperUser {
     public ProductDto toDto(Product product) {
-        return new ProductDto(
-                product.getId(),
-                product.getExternalId(),
-                product.getName(),
-                product.getType(),
-                product.getAgreementId(),
-                product.getUserId()
-        );
+        var dto = new ProductDto();
+        dto.setId(product.getId());
+        dto.setActive(product.isActive());
+        dto.setAgreementId(product.getAgreementId());
+        dto.setAmount(product.getAmount());
+        dto.setCurrency(product.getCurrency());
+        dto.setUserId(product.getUserId());
+        dto.setType(product.getType());
+        dto.setExternalId(product.getExternalId());
+        dto.setHide(product.isHide());
+        dto.setImage(product.getImage());
+
+        return dto;
     }
 
     public List<ProductDto> toDtoList(List<Product> products) {

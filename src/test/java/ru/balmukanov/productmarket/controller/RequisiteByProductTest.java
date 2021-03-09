@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.balmukanov.productmarket.constant.ProductType;
 import ru.balmukanov.productmarket.dto.RequisiteDto;
 import ru.balmukanov.productmarket.entity.Product;
 import ru.balmukanov.productmarket.entity.Requisite;
@@ -15,7 +16,6 @@ import ru.balmukanov.productmarket.mapper.ProductMapperUser;
 import ru.balmukanov.productmarket.mapper.RequisiteMapper;
 import ru.balmukanov.productmarket.service.ProductService;
 import ru.balmukanov.productmarket.service.RequisiteService;
-import ru.balmukanov.productmarketinterface.thrift.ProductType;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;

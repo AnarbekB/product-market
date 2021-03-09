@@ -8,13 +8,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.balmukanov.productmarket.constant.ProductType;
 import ru.balmukanov.productmarket.dto.ProductDto;
 import ru.balmukanov.productmarket.entity.Product;
 import ru.balmukanov.productmarket.mapper.ProductMapperUser;
 import ru.balmukanov.productmarket.mapper.RequisiteMapper;
 import ru.balmukanov.productmarket.service.ProductService;
 import ru.balmukanov.productmarket.service.RequisiteService;
-import ru.balmukanov.productmarketinterface.thrift.ProductType;
 
 import java.util.Collections;
 import java.util.List;
@@ -56,17 +56,17 @@ public class ProductUserListTest {
         product.setAgreementId("1111");
         product.setName("Card");
         product.setType(ProductType.CARD);
+        product.setAmount(100000);
+        product.setCurrency("RUB");
         List<Product> allProducts = Collections.singletonList(product);
 
         given(productService.userList(productId)).willReturn(allProducts);
 
         ProductDto productDto = new ProductDto(
-                productId,
-                product.getExternalId(),
-                product.getName(),
-                product.getType(),
-                product.getAgreementId(),
-                product.getUserId()
+                productId, product.getExternalId(), product.getName(),
+                product.getType(), product.getAgreementId(), product.getUserId(),
+                product.getAmount(), product.getCurrency(), product.isActive(),
+                product.isHide(), product.getImage()
         );
         List<ProductDto> allProductsDto = Collections.singletonList(productDto);
 

@@ -1,7 +1,8 @@
 package ru.balmukanov.productmarket.entity;
 
 import lombok.*;
-import ru.balmukanov.productmarketinterface.thrift.ProductType;
+import ru.balmukanov.productmarket.constant.ProductType;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
@@ -10,7 +11,6 @@ import java.io.Serializable;
 @Builder
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product implements Serializable {
@@ -30,6 +30,7 @@ public class Product implements Serializable {
 
     @NotNull
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private ProductType type;
 
     @NotNull
@@ -42,12 +43,27 @@ public class Product implements Serializable {
 
     @NotNull
     @Column(nullable = false)
+    private double amount;
+
+    @OneToOne(mappedBy = "product")
+    private Requisite requisite;
+
+    @NotNull
+    @Column(nullable = false)
     private String currency;
 
     @NotNull
     @Column(nullable = false)
-    private float amount;
+    private boolean active;
 
-    @OneToOne(mappedBy = "product")
-    private Requisite requisite;
+    @NotNull
+    @Column(nullable = false)
+    private boolean hide;
+
+    @Column()
+    private String image;
+
+    public Product() {
+        this.hide = false;
+    }
 }

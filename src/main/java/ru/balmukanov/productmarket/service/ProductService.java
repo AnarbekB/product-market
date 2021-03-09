@@ -1,5 +1,6 @@
 package ru.balmukanov.productmarket.service;
 
+import ru.balmukanov.productmarket.dto.AddProductDto;
 import ru.balmukanov.productmarket.entity.Product;
 import ru.balmukanov.productmarketinterface.thrift.ProductDto;
 import ru.balmukanov.productmarketinterface.thrift.ProductNotFoundException;
@@ -11,5 +12,5 @@ public interface ProductService {
 
     List<Product> userList(Long userId);
 
-    Product add(ProductDto productDTO);
+    Product add(AddProductDto productDTO);
 }

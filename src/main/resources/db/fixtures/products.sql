@@ -1,2 +1,2 @@
-INSERT INTO products.products (id, agreement_id, external_id, name, type, user_id, currency, amount) VALUES (1, '1221', '12111', 'Main account', 1, 1, 'RUB', 12000);
-INSERT INTO products.products (id, agreement_id, external_id, name, type, user_id, currency, amount) VALUES (2, '1222', '12133', 'Account', 2, 1, 'RUB', 100000);
+INSERT INTO products.products (id, agreement_id, external_id, name, type, user_id, currency, amount, active, hide) VALUES (1, '1221', '12111', 'Main account', 1, 1, 'RUB', 12000, '1', '0');
+INSERT INTO products.products (id, agreement_id, external_id, name, type, user_id, currency, amount, active, hide) VALUES (2, '1222', '12133', 'Account', 2, 1, 'RUB', 100000, '1', '1');

@@ -3,6 +3,7 @@ package ru.balmukanov.productmarket.mapper;
 import org.springframework.stereotype.Component;
 import ru.balmukanov.productmarket.entity.Product;
 import ru.balmukanov.productmarketinterface.thrift.ProductDto;
+import ru.balmukanov.productmarketinterface.thrift.ProductType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,12 @@ public class ProductMapperThrift {
                 product.getId(),
                 product.getExternalId(),
                 product.getName(),
-                product.getType(),
+                ProductType.valueOf(product.getType().toString().toUpperCase()),
                 product.getAgreementId(),
-                product.getUserId()
+                product.getUserId(),
+                product.getAmount(),
+                product.getCurrency(),
+                product.isActive()
         );
     }
 

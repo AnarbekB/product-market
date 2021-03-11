@@ -12,6 +12,7 @@ public class ProductMapperUser {
     public ProductDto toDto(Product product) {
         var dto = new ProductDto();
         dto.setId(product.getId());
+        dto.setName(product.getName());
         dto.setActive(product.isActive());
         dto.setAgreementId(product.getAgreementId());
         dto.setAmount(product.getAmount());
